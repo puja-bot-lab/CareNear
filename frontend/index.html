@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CareNear | Find Hospitals Near You</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="index.html"><span class="brand-icon">✚</span> CareNear</a>
+  <div class="top-actions">
+    <button id="locationBtn" class="location-pill">📍 <span id="locationText">Use my location</span></button>
+    <button id="loginBtn" class="login-btn">Log in</button>
+    <button id="logoutBtn" class="login-btn hidden">Logout</button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div>
+      <p class="eyebrow">HEALTHCARE, CLOSER TO YOU</p>
+      <h1>Find the right hospital <span>near you.</span></h1>
+      <p class="hero-copy">Allow your current location to discover nearby hospitals, check opening status and see token availability.</p>
+    </div>
+    <div class="location-card">
+      <div class="pulse">●</div>
+      <div><strong id="locationStatus">Location not enabled</strong><small id="coordsText">Turn on location to find nearby hospitals.</small></div>
+    </div>
+  </section>
+
+  <section class="toolbar">
+    <div class="filter-row">
+      <div class="filter-wrap">
+        <button class="filter-btn" id="departmentBtn">Departments ▾</button>
+        <div class="dropdown" id="departmentMenu"></div>
+      </div>
+      <button class="filter-btn" id="openBtn">Open now</button>
+      <button class="filter-btn" id="emergencyBtn">Emergency 24/7</button>
+      <button class="filter-btn secondary" id="resetBtn">Reset</button>
+    </div>
+    <div class="search-row">
+      <input id="searchInput" type="search" placeholder="Search hospital, department or area...">
+      <select id="radiusSelect">
+        <option value="5">Within 5 km</option>
+        <option value="10" selected>Within 10 km</option>
+        <option value="20">Within 20 km</option>
+      </select>
+    </div>
+  </section>
+
+  <section class="content-grid">
+    <div>
+      <div class="section-head">
+        <div><h2>Hospitals near you</h2><p id="resultText">Enable location to load nearby hospitals.</p></div>
+        <button class="refresh" id="refreshBtn">↻ Refresh</button>
+      </div>
+      <div id="loading" class="state-card hidden"><div class="spinner"></div>Finding hospitals near your location...</div>
+      <div id="error" class="state-card error hidden"></div>
+      <div id="hospitalList" class="hospital-list"></div>
+    </div>
+    <div class="map-panel">
+      <div class="map-head"><strong>Nearby map</strong><span id="mapDistance">GPS required</span></div>
+      <div id="map"></div>
+    </div>
+  </section>
+</main>
+
+<div class="modal hidden" id="loginModal">
+  <div class="modal-card">
+    <button class="close" id="closeLogin">×</button>
+    <p class="eyebrow">CAReNEAR ACCOUNT</p>
+    <h2>Login</h2>
+    <p class="muted">First login automatically creates your CareNear account.</p>
+    <form id="loginForm">
+      <label>Phone number<input id="loginPhone" inputmode="numeric" maxlength="10" placeholder="10-digit phone" required></label>
+      <label>Password<input id="loginPassword" type="password" minlength="4" placeholder="At least 4 characters" required></label>
+      <button class="primary" type="submit">Login / Create account</button>
+    </form>
+    <p id="loginMessage" class="form-message"></p>
+  </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="js/config.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

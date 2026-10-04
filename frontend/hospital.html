@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CareNear | Hospital</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="index.html"><span class="brand-icon">✚</span> CareNear</a>
+  <div class="top-actions"><a class="back-link" href="index.html">← Back to hospitals</a></div>
+</header>
+
+<main class="detail-page">
+  <div id="detailLoading" class="state-card">Loading hospital...</div>
+  <div id="detailError" class="state-card error hidden"></div>
+
+  <section id="hospitalDetail" class="hidden">
+    <div class="hospital-title">
+      <div>
+        <p class="eyebrow">HOSPITAL APPOINTMENT</p>
+        <h1 id="hospitalName">Hospital</h1>
+        <p id="hospitalAddress" class="muted"></p>
+      </div>
+      <div id="statusBadge"></div>
+    </div>
+
+    <div class="detail-grid">
+      <div class="booking-card">
+        <h2>Patient details</h2>
+        <p class="muted">Login is required before booking a token.</p>
+        <form id="bookingForm">
+          <label>Patient name<input id="patientName" required placeholder="Full name"></label>
+          <div class="two-col">
+            <label>Age<input id="age" type="number" min="1" max="120" required></label>
+            <label>Phone<input id="phone" inputmode="numeric" maxlength="10" required placeholder="10-digit phone"></label>
+          </div>
+          <label>Health issue / department
+            <select id="department" required></select>
+          </label>
+          <label>Health issue details<textarea id="issue" maxlength="1000" required placeholder="Briefly describe the problem"></textarea></label>
+          <label>Appointment date<input id="date" type="date" required></label>
+          <div class="token-box">
+            <div><span>Available tokens</span><strong id="availableTokens">—</strong></div>
+            <div><span>Estimated wait</span><strong id="waitTime">—</strong></div>
+          </div>
+          <button class="primary" type="submit" id="bookBtn">Book token</button>
+          <p id="bookingMessage" class="form-message"></p>
+        </form>
+      </div>
+
+      <div class="map-card">
+        <div class="map-head"><strong>Distance & location</strong><span id="distanceText">Calculating...</span></div>
+        <div id="detailMap"></div>
+        <div class="route-info">
+          <span>📍 Your location</span>
+          <span>🏥 Hospital</span>
+        </div>
+        <a id="directionsLink" class="directions" target="_blank" rel="noopener">Open directions in Maps →</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="modal hidden" id="successModal">
+  <div class="modal-card success-card">
+    <div class="success-icon">✓</div>
+    <h2>Token booked successfully</h2>
+    <p id="successDetails"></p>
+    <a class="primary button-link" href="index.html">Back to hospitals</a>
+  </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="js/config.js"></script>
+<script src="js/hospital.js"></script>
+</body>
+</html>
